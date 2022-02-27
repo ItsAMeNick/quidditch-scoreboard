@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <style>* {
+        margin: 0;
+        border: 0;
+        color: white;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight: 800;
+      }
+
+      .inner {
+        width: 1920px;
+        height: 1080px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+      }
+
+      .scoreboard {
+        width: 40%;
+        height: 80px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .team {
+        width: 40%;
+        display: inherit;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        border-style: groove;
+        border-color: white;
+        border-radius: 5px;
+        margin: 10px;
+      }
+
+      .score {
+        width: 25%;
+        background-color: #222121;
+        display: inherit;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        border-radius: 5px;
+        margin: 1px;
+      }
+
+      .timer {
+        width: 30%;
+        background-color: black;
+        display: inherit;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        border-radius: 5px;
+        margin: 10px;
+      }
+      /*# sourceMappingURL=style.css.map */</style>
+</head>
+<body>
+    <div class="inner">
+        <div class="scoreboard">
+            <div class="score" id = "scoreOne"></div>
+            <div class="team" id = "teamOne"></div>
+            <div class="timer"id = "timer"></div>
+            <div class="team" id = "teamTwo"></div>
+            <div class="score" id = "scoreTwo"></div>
+        </div>
+    </div>
+    <script>
+        // Populate this function with setters for your data fields
+        function updateView(data) {
+            document.getElementById("timer").innerHTML = data.time
+            document.getElementById("scoreOne").innerHTML = data.teamAScore
+            document.getElementById("scoreTwo").innerHTML = data.teamBScore
+
+            let teamOne = JSON.parse(localStorage.getItem("teamOne"))
+            let teamTwo = JSON.parse(localStorage.getItem("teamTwo"))
+
+            document.getElementById('teamOne').innerHTML = teamOne.abbreviation
+            document.getElementById('teamTwo').innerHTML = teamTwo.abbreviation
+
+            document.getElementById('teamOne').style.color = (typeof teamOne.primary_color.rgb !== 'undefined' ? rgb(teamOne.primary_color.rgb) : teamOne.primary_color.hex)
+            document.getElementById('teamTwo').style.color = (typeof teamTwo.primary_color.rgb !== 'undefined' ? rgb(teamTwo.primary_color.rgb) : teamTwo.primary_color.hex)
+
+            document.getElementById('teamOne').style.background = (typeof teamOne.secondary_color.rgb !== 'undefined' ? rgb(teamOne.secondary_color.rgb) : teamOne.secondary_color.hex)
+            document.getElementById('teamTwo').style.background = (typeof teamTwo.secondary_color.rgb !== 'undefined' ? rgb(teamTwo.secondary_color.rgb) : teamTwo.secondary_color.hex)
+        }
+
+        function rgb(array) {
+            return 'rgb(' + array.join(', ') + ')';
+        }
+
+        // This function sets your polling rate
+        let updatesPerSecond = 30
+        setInterval(function () {
+            fetch("/score").then(response => response.text())
+                .then(data => {
+                    console.log(data)
+                    try{updateView(JSON.parse(data))}
+                    catch{}
+                });
+        }, 1000/updatesPerSecond)
+    </script>
+</body>
+</html>

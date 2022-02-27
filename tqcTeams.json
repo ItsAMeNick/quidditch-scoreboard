@@ -1,0 +1,43 @@
+{"teams": [
+    {
+        "note": "DO NOT EDIT/REMOVE THIS!",
+        "team_name": "",
+        "abbreviation": "",
+        "primary_color": {
+            "rgb": [0, 0, 0]
+        },
+        "secondary_color": {
+            "rgb": [0,0,0]
+        }
+    },
+    {
+        "team_name": "Lux",
+        "abbreviation": "LX",
+        "primary_color": {
+            "rgb": [217, 216, 221]
+        },
+        "secondary_color": {
+            "rgb": [10,25,68]
+        }
+    },
+    {
+        "team_name": "Taliyah",
+        "abbreviation": "TALI",
+        "primary_color": {
+            "hex": "#750a02"
+        },
+        "secondary_color": {
+            "hex": "#f7ba2a"
+        }
+    },
+    {
+        "team_name": "Violet",
+        "abbreviation": "VI",
+        "primary_color": {
+            "hex": "#d45c84"
+        },
+        "secondary_color": {
+            "rgb": [207, 182, 185]
+        }
+    }
+]}

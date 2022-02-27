@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div class="team_one_selector">
+            <select id="team_one_selector"></select>
+        </div>
+
+        <div class="team_two_selector">
+            <select id="team_two_selector"></select>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        // Lets load in all the teams
+        fetch("/team_data").then(response => response.json())
+            .then(data => {
+                let teamOptions = data.teams.map(team =>
+                    "<option value=" + data.teams.indexOf(team) + ">" + team.team_name + "</option>"
+                ).join()
+
+                document.getElementById("team_one_selector").innerHTML = teamOptions
+                document.getElementById("team_one_selector").addEventListener("change", function() {
+                    localStorage.setItem('teamOne', JSON.stringify(data.teams[this.value]));
+                })
+
+                document.getElementById("team_two_selector").innerHTML = teamOptions
+                document.getElementById("team_two_selector").addEventListener("change", function() {
+                    localStorage.setItem('teamTwo', JSON.stringify(data.teams[this.value]));
+                })
+            })
+    </script>
+</html>
