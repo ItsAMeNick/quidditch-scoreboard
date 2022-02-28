@@ -7,7 +7,7 @@
             "rgb": [0, 0, 0]
         },
         "secondary_color": {
-            "rgb": [0,0,0]
+            "rgb": [0, 0, 0]
         }
     },
     {
@@ -17,7 +17,7 @@
             "rgb": [217, 216, 221]
         },
         "secondary_color": {
-            "rgb": [10,25,68]
+            "rgb": [10, 25, 68]
         }
     },
     {
@@ -38,6 +38,16 @@
         },
         "secondary_color": {
             "rgb": [207, 182, 185]
+        }
+    },
+    {
+        "team_name": "Diana",
+        "abbreviation": "DNA",
+        "primary_color": {
+            "hex": "white"
+        },
+        "secondary_color": {
+            "hex": "black"
         }
     }
 ]}
